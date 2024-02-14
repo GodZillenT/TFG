@@ -1,0 +1,18 @@
+version: '3'
+services:
+  streamlit:
+    build:
+      context: .
+      dockerfile: evaluation_streamlit/Dockerfile
+    ports:
+      - 8501:8501
+    depends_on:
+      - fastapi
+  fastapi:
+    build:
+      context: .
+      dockerfile: evaluation_api/Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - 8000:8000
